@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Welcome Page</title>
+</head>
+<body>
+    <div class="header-container">
+        <div class="menu-container">
+            
+            <div class="menu-button" onclick="toggleMenu()">MENU</div>
+            <div id="menu" class="dropdown-content">
+                <ul>
+                    <li>pepsi</li>
+                    <li>nescafe</li>
+                    <li>Cappuccino</li>
+                    <li>Espresso</li>
+                    <li>Latte</li>
+                    <li>Amricano</li>
+                    <li>RedBull</li>
+                    <li>Ice Coffee</li>
+                    <li>Moca</li>
+                    <li>MilkCheack</li>
+    
+                </ul>
+            </div>
+        </div>
+        <h1>Caffez Cafe`</h1>
+    </div>
+    <div class="container">
+        <h2>Welcome to our drink shop!</h2>
+        <p>Please enter your name:</p>
+        <input type="text" id="nameInput">
+        <p>Please enter your gender (male/female):</p>
+        <input type="text" id="genderInput">
+        <p>Would you like a hot or cold drink?</p>
+        <input type="text" id="drinkTypeInput">
+        <p>What is the name of the drink you want?</p>
+        <input type="text" id="drinkNameInput">
+        <button onclick="welcomeUser()">Submit</button>
+    </div>
+    <div id="output" class="container">
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
