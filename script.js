@@ -1,61 +1,63 @@
-let userAnswers = [];
+     
+        let userAnswers = [];
 
-
-function toggleMenu() {
-    const menu = document.getElementById("menu");
-    menu.classList.toggle("show");
-}
-
-function getNameInput() {
-    const name = prompt("Please enter your name:");
-    if (name) {
-        userAnswers.push(name);
-        getGenderInput();
-    }
-}
-
-
-function getGenderInput() {
-    let gender = prompt("Please enter your gender (Male/Female):");
-    while (true) {
-        if (gender.toLowerCase() === "male" || gender.toLowerCase() === "female") {
-            userAnswers.push(gender);
-            getDrinkTypeInput();
-            break;
-        } else {
-            alert("Please enter 'Male' or 'Female'.");
-            gender = prompt("Please enter your gender (Male/Female):");
+      
+        function toggleMenu() {
+            const menu = document.getElementById("menu");
+            menu.classList.toggle("show");
         }
-    }
-}
+
+     
+        function showGenderInput() {
+            const nameInputDiv = document.getElementById("nameInputDiv");
+            const genderInputDiv = document.getElementById("genderInputDiv");
+            nameInputDiv.style.display = "none";
+            genderInputDiv.style.display = "block";
+        }
 
 
-function getDrinkTypeInput() {
-    let drinkType = prompt("Would you like a hot or cold drink?");
-    while (drinkType.toLowerCase() !== "hot" && drinkType.toLowerCase() !== "cold") {
-        alert("Please enter 'Hot' or 'Cold'.");
-        drinkType = prompt("Would you like a hot or cold drink?");
-    }
-    userAnswers.push(drinkType);
-    getDrinkNameInput();
-}
+        function validateGender() {
+            let genderInput = "";
+            while (genderInput !== "male" && genderInput !== "female") {
+                genderInput = prompt("Please enter your gender (male/female):");
+                genderInput = genderInput ? genderInput.toLowerCase() : "";
+            }
+            document.getElementById("genderInput").value = genderInput; 
+            const genderInputDiv = document.getElementById("genderInputDiv");
+            const drinkTypeInputDiv = document.getElementById("drinkTypeInputDiv");
+            genderInputDiv.style.display = "none";
+            drinkTypeInputDiv.style.display = "block";
+        }
 
+   
+        function showDrinkNameInput() {
+            const drinkTypeInputDiv = document.getElementById("drinkTypeInputDiv");
+            const drinkNameInputDiv = document.getElementById("drinkNameInputDiv");
+            drinkTypeInputDiv.style.display = "none";
+            drinkNameInputDiv.style.display = "block";
+        }
 
-function getDrinkNameInput() {
-    const drinkName = prompt("What is the name of the drink you want?");
-    if (drinkName) {
-        userAnswers.push(drinkName);
-        displayResults();
-    }
-}
+       
+        function welcomeUser() {
+            const nameInput = document.getElementById("nameInput").value;
+            const genderInput = document.getElementById("genderInput").value.toLowerCase();
+            const drinkTypeInput = document.getElementById("drinkTypeInput").value;
+            const drinkNameInput = document.getElementById("drinkNameInput").value;
 
+            const userAnswersArray = [nameInput, genderInput, drinkTypeInput, drinkNameInput];
+            console.log("User Answers: " + JSON.stringify(userAnswersArray));
 
-function displayResults() {
-    const outputDiv = document.getElementById("output");
-    outputDiv.innerHTML = `
-        <p>Welcome, ${userAnswers[0]}!</p>
-        <p>Gender: ${userAnswers[1]}</p>
-        <p>Drink Type: ${userAnswers[2]}</p>
-        <p>Drink Name: ${userAnswers[3]}</p>
-    `;
-}
+            userAnswers = userAnswersArray;
+
+            const outputDiv = document.getElementById("output");
+            outputDiv.innerHTML = `
+                <p>Welcome, ${nameInput}!</p>
+                <ul>
+               <li>Gender: ${genderInput}</li>
+                <li>Drink Type: ${drinkTypeInput}</li>
+                <li>Drink Name: ${drinkNameInput}</li>
+                </ul>
+
+            `; }
+
+            
