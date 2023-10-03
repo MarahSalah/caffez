@@ -1,63 +1,40 @@
-     
-        let userAnswers = [];
+document.addEventListener("DOMContentLoaded", function() {
+    const menuButton = document.querySelector(".menu-button");
+    const dropdownContent = document.querySelector(".dropdown-content");
 
-      
-        function toggleMenu() {
-            const menu = document.getElementById("menu");
-            menu.classList.toggle("show");
-        }
+    menuButton.addEventListener("click", function() {
+        dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+    });
+});
 
-     
-        function showGenderInput() {
-            const nameInputDiv = document.getElementById("nameInputDiv");
-            const genderInputDiv = document.getElementById("genderInputDiv");
-            nameInputDiv.style.display = "none";
-            genderInputDiv.style.display = "block";
-        }
+function welcomeUser() {
+    const name = document.getElementById("nameInput").value;
+    const gender = document.getElementById("genderInput").value.toLowerCase();
+    const drinkType = document.getElementById("drinkTypeInput").value;
+    const drinkName = document.getElementById("drinkNameInput").value;
 
+    let message = "Welcome, ";
 
-        function validateGender() {
-            let genderInput = "";
-            while (genderInput !== "male" && genderInput !== "female") {
-                genderInput = prompt("Please enter your gender (male/female):");
-                genderInput = genderInput ? genderInput.toLowerCase() : "";
-            }
-            document.getElementById("genderInput").value = genderInput; 
-            const genderInputDiv = document.getElementById("genderInputDiv");
-            const drinkTypeInputDiv = document.getElementById("drinkTypeInputDiv");
-            genderInputDiv.style.display = "none";
-            drinkTypeInputDiv.style.display = "block";
-        }
+    if (name.trim() === "") {
+        alert("Please enter your name.");
+        return;
+    }
 
-   
-        function showDrinkNameInput() {
-            const drinkTypeInputDiv = document.getElementById("drinkTypeInputDiv");
-            const drinkNameInputDiv = document.getElementById("drinkNameInputDiv");
-            drinkTypeInputDiv.style.display = "none";
-            drinkNameInputDiv.style.display = "block";
-        }
+    if (gender === "male" || gender === "female") {
+        message += gender === "male" ? "Mr. " : "Ms. ";
+    } else {
+        console.log("Gender input is not correct. Welcoming without title.");
+    }
 
-       
-        function welcomeUser() {
-            const nameInput = document.getElementById("nameInput").value;
-            const genderInput = document.getElementById("genderInput").value.toLowerCase();
-            const drinkTypeInput = document.getElementById("drinkTypeInput").value;
-            const drinkNameInput = document.getElementById("drinkNameInput").value;
+    message += name + "!";
 
-            const userAnswersArray = [nameInput, genderInput, drinkTypeInput, drinkNameInput];
-            console.log("User Answers: " + JSON.stringify(userAnswersArray));
+    if (drinkType && drinkName) {
+        message += " You have ordered a " + drinkType + " " + drinkName + ".";
+    }
 
-            userAnswers = userAnswersArray;
+    alert(message);
 
-            const outputDiv = document.getElementById("output");
-            outputDiv.innerHTML = `
-                <p>Welcome, ${nameInput}!</p>
-                <ul>
-               <li>Gender: ${genderInput}</li>
-                <li>Drink Type: ${drinkTypeInput}</li>
-                <li>Drink Name: ${drinkNameInput}</li>
-                </ul>
-
-            `; }
-
-            
+    if (drinkName) {
+        console.log("Customer ordered: " +"  "+name+"  " + drinkName);
+    }
+}
