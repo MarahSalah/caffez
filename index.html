@@ -52,6 +52,12 @@
     </div>
     <div id="output" class="container">
     </div>
+
+
+
+
+
+    
     <script>
       
         let userAnswers = [];
@@ -107,13 +113,19 @@
             const outputDiv = document.getElementById("output");
             outputDiv.innerHTML = `
                 <p>Welcome, ${nameInput}!</p>
-                <p>Gender: ${genderInput}</p>
-                <p>Drink Type: ${drinkTypeInput}</p>
-                <p>Drink Name: ${drinkNameInput}</p>
-            `;
+                <ul>
+               <li>Gender: ${genderInput}</li>
+                <li>Drink Type: ${drinkTypeInput}</li>
+                <li>Drink Name: ${drinkNameInput}</li>
+                </ul>
 
-            alert("Welcome, " + nameInput + "!\nGender: " + genderInput + "\nDrink Type: " + drinkTypeInput + "\nDrink Name: " + drinkNameInput);
-        }
+            `; }
+
+            
+            
+          
+
+
     </script>
 </body>
 </html>

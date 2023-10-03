@@ -1,64 +1,40 @@
-let userAnswers = [];
+document.addEventListener("DOMContentLoaded", function() {
+    const menuButton = document.querySelector(".menu-button");
+    const dropdownContent = document.querySelector(".dropdown-content");
 
+    menuButton.addEventListener("click", function() {
+        dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+    });
+});
 
-function toggleMenu() {
-    const menu = document.getElementById("menu");
-    menu.classList.toggle("show");
-}
+function welcomeUser() {
+    const name = document.getElementById("nameInput").value;
+    const gender = document.getElementById("genderInput").value.toLowerCase();
+    const drinkType = document.getElementById("drinkTypeInput").value;
+    const drinkName = document.getElementById("drinkNameInput").value;
 
-function getNameInput() {
-    const name = prompt("Please enter your name:");
-    if (name) {
-        userAnswers.push(name);
-        getGenderInput();
+    let message = "Welcome, ";
+
+    if (name.trim() === "") {
+        alert("Please enter your name.");
+        return;
     }
-}
 
-
-function getGenderInput() {
-    let gender = prompt("Please enter your gender (Male/Female):");
-    while (true) {
-        if (gender.toLowerCase() === "male" || gender.toLowerCase() === "female") {
-            userAnswers.push(gender);
-            getDrinkTypeInput();
-            break;
-        } else {
-            alert("Please enter 'Male' or 'Female'.");
-            gender = prompt("Please enter your gender (Male/Female):");
-        }
+    if (gender === "male" || gender === "female") {
+        message += gender === "male" ? "Mr. " : "Ms. ";
+    } else {
+        console.log("Gender input is not correct. Welcoming without title.");
     }
-}
 
+    message += name + "!";
 
-function getDrinkTypeInput() {
-    let drinkType = prompt("Would you like a hot or cold drink?");
-    while (drinkType.toLowerCase() !== "hot" && drinkType.toLowerCase() !== "cold") {
-        alert("Please enter 'Hot' or 'Cold'.");
-        drinkType = prompt("Would you like a hot or cold drink?");
+    if (drinkType && drinkName) {
+        message += " You have ordered a " + drinkType + " " + drinkName + ".";
     }
-    userAnswers.push(drinkType);
-    getDrinkNameInput();
-}
 
+    alert(message);
 
-function getDrinkNameInput() {
-    const drinkName = prompt("What is the name of the drink you want?");
     if (drinkName) {
-        userAnswers.push(drinkName);
-        displayResults();
+        console.log("Customer ordered: " +"  "+name+"  " + drinkName);
     }
 }
-
-
-function displayResults() {
-    const outputDiv = document.getElementById("output");
-    outputDiv.innerHTML = `
-        <p>Welcome, ${userAnswers[0]}!</p>
-        <p>Gender: ${userAnswers[1]}</p>
-        <p>Drink Type: ${userAnswers[2]}</p>
-        <p>Drink Name: ${userAnswers[3]}</p>
-    `;
-}
-
-
-getNameInput();
