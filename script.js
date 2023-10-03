@@ -59,6 +59,3 @@ function displayResults() {
         <p>Drink Name: ${userAnswers[3]}</p>
     `;
 }
-
-
-
