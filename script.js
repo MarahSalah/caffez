@@ -1,16 +1,7 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const menuButton = document.querySelector(".menu-button");
-    const dropdownContent = document.querySelector(".dropdown-content");
-
-    menuButton.addEventListener("click", function() {
-        dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
-    });
-});
-
 function welcomeUser() {
     const name = document.getElementById("nameInput").value;
-    const gender = document.getElementById("genderInput").value.toLowerCase();
-    const drinkType = document.getElementById("drinkTypeInput").value;
+    const age = document.getElementById("ageInput").value;
+    const drinkTypeInputs = document.querySelectorAll('input[name="drinkType"]:checked');
     const drinkName = document.getElementById("drinkNameInput").value;
 
     let message = "Welcome, ";
@@ -20,21 +11,30 @@ function welcomeUser() {
         return;
     }
 
-    if (gender === "male" || gender === "female") {
-        message += gender === "male" ? "Mr. " : "Ms. ";
-    } else {
-        console.log("Gender input is not correct. Welcoming without title.");
+    if (!age || isNaN(age)) {
+        alert("Please enter a valid age.");
+        return;
     }
 
-    message += name + "!";
-
-    if (drinkType && drinkName) {
-        message += " You have ordered a " + drinkType + " " + drinkName + ".";
+    if (drinkTypeInputs.length === 0) {
+        alert("Please select at least one drink type (hot or cold).");
+        return;
     }
 
-    alert(message);
-
-    if (drinkName) {
-        console.log("Customer ordered: " +"  "+name+"  " + drinkName);
+    const selectedDrinkTypes = [];
+    for (const drinkTypeInput of drinkTypeInputs) {
+        selectedDrinkTypes.push(drinkTypeInput.value);
     }
+
+    if (!drinkName) {
+        alert("Please enter the name of the drink you want.");
+        return;
+    }
+
+    message += `${name}! You are ${age} years old. You have ordered ${selectedDrinkTypes.join(" and ")} ${drinkName}.`;
+
+    const outputDiv = document.getElementById("output");
+    outputDiv.innerHTML = message;
+    outputDiv.style.display = "block";
+    console.log(`Customer ordered: ${name} ${drinkName}`);
 }
